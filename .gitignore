@@ -6,6 +6,7 @@ venv/
 dist/
 build/
 *.egg-info/
+outputs/
 
 # Local IDE files
 .idea/

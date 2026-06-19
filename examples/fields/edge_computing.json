@@ -6,6 +6,8 @@
     "fog computing",
     "cloud-edge collaboration"
   ],
+  "description": "Edge computing moves part of the computation closer to users, devices, and data sources instead of sending everything to a distant data center.",
+  "why_it_matters": "It matters when systems need lower latency, less bandwidth usage, better local response, or stronger data locality.",
   "seed_keywords": {
     "plain_language": [
       "what is edge computing",
@@ -35,5 +37,47 @@
     "Which parts of edge computing are already deployed?",
     "What problems remain difficult in edge computing?",
     "How can a beginner learn edge computing step by step?"
+  ],
+  "timeline": [
+    "Centralized cloud services made remote computing widely available.",
+    "More connected devices started producing data outside data centers.",
+    "Latency, bandwidth, reliability, and data locality became practical constraints.",
+    "Edge computing emerged as a way to split work between remote services, nearby nodes, and local devices."
+  ],
+  "hot_topics": [
+    "cloud-edge-device collaboration",
+    "task offloading",
+    "resource scheduling",
+    "edge model deployment",
+    "privacy-preserving distributed learning",
+    "edge security and reliability"
+  ],
+  "solved_problems": [
+    "The basic reason for moving some computation closer to users is well understood.",
+    "Many deployment patterns are already clear for caching, gateways, monitoring, and local processing.",
+    "Introductory learning materials and surveys are available."
+  ],
+  "open_problems": [
+    "Different edge nodes can have very different hardware and network conditions.",
+    "Deciding where each task should run is still context-dependent.",
+    "Operating many distributed edge nodes is harder than operating one centralized environment.",
+    "Security and privacy risks are harder to control when nodes are widely distributed."
+  ],
+  "learning_path": [
+    "Understand how clients, networks, servers, and data centers communicate.",
+    "Learn the basic idea of cloud computing and why centralization became popular.",
+    "Study latency, bandwidth, reliability, and privacy as system constraints.",
+    "Compare cloud-only, device-only, and cloud-edge-device architectures.",
+    "Read one survey or tutorial to learn the main subtopics.",
+    "Build a small project that compares local processing with remote processing."
+  ],
+  "starter_projects": [
+    "Measure the delay of doing a simple task locally versus sending it to a remote service.",
+    "Run a lightweight service on a small local machine and access it from another device.",
+    "Build a toy task scheduler that chooses local or remote execution based on latency.",
+    "Write a short field note explaining what becomes easier and harder when computation moves closer to devices."
+  ],
+  "sources": [
+    "Add introductory articles, surveys, technical docs, and project links here as you verify the report."
   ]
 }

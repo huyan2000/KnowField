@@ -12,10 +12,10 @@ FIELD_REPORT_SCHEMA: dict[str, object] = {
     "solved_problems": [],
     "open_problems": [],
     "key_players": {
-        "companies": [],
+        "organizations": [],
         "universities_labs": [],
         "open_source_projects": [],
-        "standards_organizations": [],
+        "standards_groups": [],
     },
     "representative_papers": [],
     "representative_projects": [],

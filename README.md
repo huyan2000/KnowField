@@ -31,7 +31,7 @@ Run the current paper discovery workflow:
 
 ```bash
 cd paper_search
-export S2_API_KEY="your_semantic_scholar_key"  # optional
+export S2_API_KEY="your_metadata_api_key"  # optional
 python3 paper_search_crawler.py
 ```
 
@@ -46,6 +46,27 @@ Print the planned field report schema:
 
 ```bash
 knowfield schema
+```
+
+Create a new field config:
+
+```bash
+knowfield init "edge computing" -o edge_computing.json
+```
+
+Create a starter field report from a config:
+
+```bash
+knowfield map examples/fields/edge_computing.json
+```
+
+The command writes:
+
+```text
+outputs/edge-computing/field_report.md
+outputs/edge-computing/keywords.json
+outputs/edge-computing/learning_path.md
+outputs/edge-computing/starter_questions.md
 ```
 
 ## What KnowField Tries to Answer

@@ -2,7 +2,10 @@ from __future__ import annotations
 
 import argparse
 import json
+from pathlib import Path
 
+from .field_config import create_template, load_field_config, write_field_config
+from .report import write_report_bundle
 from .schema import FIELD_REPORT_SCHEMA, MATURITY_LEVELS
 
 
@@ -21,10 +24,31 @@ def main(argv: list[str] | None = None) -> None:
     subparsers = parser.add_subparsers(dest="command")
 
     subparsers.add_parser("schema", help="print the planned KnowField report schema")
+    init_parser = subparsers.add_parser("init", help="create a field config template")
+    init_parser.add_argument("topic", help="field or topic name")
+    init_parser.add_argument("-o", "--output", type=Path, help="output JSON path")
+
+    map_parser = subparsers.add_parser("map", help="create a starter field report from a config file")
+    map_parser.add_argument("config", type=Path, help="field config JSON path")
+    map_parser.add_argument("-o", "--output", type=Path, help="output directory")
 
     args = parser.parse_args(argv)
     if args.command == "schema":
         print_schema()
+        return
+    if args.command == "init":
+        config = create_template(args.topic)
+        output_path = args.output or Path(f"{config.slug}.json")
+        write_field_config(config, output_path)
+        print(f"Created field config: {output_path}")
+        return
+    if args.command == "map":
+        config = load_field_config(args.config)
+        output_dir = args.output or Path("outputs") / config.slug
+        paths = write_report_bundle(config, output_dir)
+        print(f"Created field starter report in: {output_dir}")
+        for path in paths:
+            print(f"- {path}")
         return
 
     parser.print_help()

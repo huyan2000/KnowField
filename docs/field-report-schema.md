@@ -21,6 +21,15 @@ The current machine-readable schema is exposed through:
 knowfield schema
 ```
 
+The first usable workflow is intentionally simple:
+
+```bash
+knowfield init "edge computing" -o edge_computing.json
+knowfield map edge_computing.json
+```
+
+This creates a starter report that a reader can edit, verify, and improve with sources.
+
 ## Maturity Model
 
 - `L1 概念期`: definitions are unstable and evidence is sparse.
