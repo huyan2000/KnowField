@@ -24,11 +24,10 @@ knowfield schema
 The first usable workflow is intentionally simple:
 
 ```bash
-knowfield init "edge computing" -o edge_computing.json
-knowfield map edge_computing.json
+knowfield map "edge computing"
 ```
 
-This creates a starter report that a reader can edit, verify, and improve with sources.
+This creates a starter report plus an editable `field_config.json`. A reader can improve that config over time and regenerate the report.
 
 ## Maturity Model
 

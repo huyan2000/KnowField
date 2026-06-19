@@ -48,25 +48,38 @@ Print the planned field report schema:
 knowfield schema
 ```
 
-Create a new field config:
+Create a starter field report from only a topic name:
+
+```bash
+knowfield map "edge computing"
+```
+
+This writes a first report and an editable config file:
+
+```text
+outputs/edge-computing/field_config.json
+outputs/edge-computing/field_report.md
+outputs/edge-computing/keywords.json
+outputs/edge-computing/learning_path.md
+outputs/edge-computing/starter_questions.md
+```
+
+You can then edit `outputs/edge-computing/field_config.json` and run:
+
+```bash
+knowfield map outputs/edge-computing/field_config.json
+```
+
+If you only want to create a config template:
 
 ```bash
 knowfield init "edge computing" -o edge_computing.json
 ```
 
-Create a starter field report from a config:
+You can also create a report from an existing config:
 
 ```bash
 knowfield map examples/fields/edge_computing.json
-```
-
-The command writes:
-
-```text
-outputs/edge-computing/field_report.md
-outputs/edge-computing/keywords.json
-outputs/edge-computing/learning_path.md
-outputs/edge-computing/starter_questions.md
 ```
 
 ## What KnowField Tries to Answer

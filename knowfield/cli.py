@@ -28,8 +28,8 @@ def main(argv: list[str] | None = None) -> None:
     init_parser.add_argument("topic", help="field or topic name")
     init_parser.add_argument("-o", "--output", type=Path, help="output JSON path")
 
-    map_parser = subparsers.add_parser("map", help="create a starter field report from a config file")
-    map_parser.add_argument("config", type=Path, help="field config JSON path")
+    map_parser = subparsers.add_parser("map", help="create a starter field report from a topic or config file")
+    map_parser.add_argument("topic_or_config", help="field name or field config JSON path")
     map_parser.add_argument("-o", "--output", type=Path, help="output directory")
 
     args = parser.parse_args(argv)
@@ -43,7 +43,11 @@ def main(argv: list[str] | None = None) -> None:
         print(f"Created field config: {output_path}")
         return
     if args.command == "map":
-        config = load_field_config(args.config)
+        candidate_path = Path(args.topic_or_config)
+        if candidate_path.exists():
+            config = load_field_config(candidate_path)
+        else:
+            config = create_template(args.topic_or_config)
         output_dir = args.output or Path("outputs") / config.slug
         paths = write_report_bundle(config, output_dir)
         print(f"Created field starter report in: {output_dir}")
