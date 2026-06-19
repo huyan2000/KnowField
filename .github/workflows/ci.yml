@@ -13,4 +13,4 @@ jobs:
         with:
           python-version: "3.11"
       - name: Compile Python files
-        run: python -m compileall knowfield paper_search
+        run: python -m compileall knowfield

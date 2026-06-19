@@ -6,10 +6,12 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+from .known_fields import get_known_field
 
-def slugify(value: str) -> str:
+
+def slugify(value: str, default: str = "") -> str:
     slug = re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
-    return slug or "field"
+    return slug or default
 
 
 def _string_list(value: Any) -> list[str]:
@@ -32,6 +34,7 @@ def _keyword_groups(value: Any) -> dict[str, list[str]]:
 @dataclass
 class FieldConfig:
     field_name: str
+    output_slug: str = ""
     aliases: list[str] = field(default_factory=list)
     description: str = ""
     why_it_matters: str = ""
@@ -47,7 +50,11 @@ class FieldConfig:
 
     @property
     def slug(self) -> str:
-        return slugify(self.field_name)
+        for candidate in [self.output_slug, self.field_name, *self.aliases]:
+            slug = slugify(candidate)
+            if slug:
+                return slug
+        return "field"
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "FieldConfig":
@@ -56,6 +63,7 @@ class FieldConfig:
             raise ValueError("field config must include field_name")
         return cls(
             field_name=field_name,
+            output_slug=str(data.get("slug") or data.get("output_slug") or "").strip(),
             aliases=_string_list(data.get("aliases")),
             description=str(data.get("description") or "").strip(),
             why_it_matters=str(data.get("why_it_matters") or "").strip(),
@@ -73,6 +81,7 @@ class FieldConfig:
     def to_dict(self) -> dict[str, Any]:
         return {
             "field_name": self.field_name,
+            "slug": self.slug,
             "aliases": self.aliases,
             "description": self.description,
             "why_it_matters": self.why_it_matters,
@@ -100,6 +109,9 @@ def create_template(topic: str) -> FieldConfig:
     clean_topic = topic.strip()
     if not clean_topic:
         raise ValueError("topic cannot be empty")
+    known = get_known_field(clean_topic)
+    if known:
+        return FieldConfig.from_dict(known)
     return FieldConfig(
         field_name=clean_topic,
         aliases=[],

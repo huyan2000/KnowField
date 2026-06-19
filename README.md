@@ -10,14 +10,15 @@ KnowField is an open-source field understanding tool for people who want to quic
 
 This repository is in an early alpha stage.
 
-The currently usable part is the paper discovery and report-generation engine under `paper_search/`. It can:
+The currently usable product path is:
 
-- search paper metadata from academic metadata services;
-- track recent arXiv papers;
-- reconcile local PDFs with paper metadata;
-- generate local CSV/HTML reports.
+1. enter a topic;
+2. collect public paper links and metadata;
+3. generate a beginner reading list with reasons;
+4. keep the search basis and raw metadata for verification;
+5. prepare a prompt file for paper explanation.
 
-The next layer of KnowField will turn those evidence sources into plain-language field maps, maturity signals, hot topics, open problems, and learning paths.
+The next layer of KnowField will connect these evidence sources to fuller field maps, maturity signals, hot topics, open problems, and learning paths.
 
 ## Quick Start
 
@@ -27,19 +28,21 @@ source .venv/bin/activate
 pip install -e .
 ```
 
-Run the current paper discovery workflow:
+Start with a topic and collect paper links:
 
 ```bash
-cd paper_search
-export S2_API_KEY="your_metadata_api_key"  # optional
-python3 paper_search_crawler.py
+knowfield collect "边缘计算" --limit 8
 ```
 
-Regenerate reports from existing local files:
+This writes a paper reading list, the search basis, raw metadata, and a prompt file for paper explanation:
 
-```bash
-cd paper_search
-python3 paper_search_crawler.py --reports-only --skip-arxiv
+```text
+outputs/edge-computing/field_config.json
+outputs/edge-computing/collection_basis.md
+outputs/edge-computing/papers.json
+outputs/edge-computing/papers.csv
+outputs/edge-computing/paper_reading_list.md
+outputs/edge-computing/paper_explanation_prompt.md
 ```
 
 Print the planned field report schema:
@@ -53,6 +56,14 @@ Create a starter field report from only a topic name:
 ```bash
 knowfield map "edge computing"
 ```
+
+English topics also work:
+
+```bash
+knowfield collect "edge computing" --limit 8
+```
+
+For common Chinese topics such as `边缘计算`, `训练框架`, and `推理框架`, KnowField includes a small starter profile so the first output is less empty.
 
 This writes a first report and an editable config file:
 
@@ -100,7 +111,6 @@ For a topic such as `edge computing`, KnowField should eventually produce:
 
 ```text
 knowfield/              # product-facing CLI and field schema
-paper_search/           # current usable paper discovery engine
 docs/                   # design notes and public documentation
 examples/fields/        # example field seed configurations
 ```
