@@ -1,0 +1,39 @@
+{
+  "field_name": "edge computing",
+  "aliases": [
+    "边缘计算",
+    "mobile edge computing",
+    "fog computing",
+    "cloud-edge collaboration"
+  ],
+  "seed_keywords": {
+    "plain_language": [
+      "what is edge computing",
+      "edge computing explained"
+    ],
+    "academic": [
+      "edge computing survey",
+      "mobile edge computing resource allocation",
+      "cloud edge collaboration",
+      "edge intelligence",
+      "task offloading edge computing"
+    ],
+    "engineering": [
+      "edge model deployment",
+      "Kubernetes edge computing",
+      "edge computing platform",
+      "IoT edge gateway"
+    ],
+    "industry": [
+      "5G MEC edge computing",
+      "industrial IoT edge computing",
+      "edge computing white paper"
+    ]
+  },
+  "starter_questions": [
+    "Why did edge computing appear after cloud computing?",
+    "Which parts of edge computing are already deployed?",
+    "What problems remain difficult in edge computing?",
+    "How can a beginner learn edge computing step by step?"
+  ]
+}

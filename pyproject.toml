@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "knowfield"
+version = "0.1.0"
+description = "Open-source field understanding tool that turns topics into field maps, maturity signals, and learning paths."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "huyan" }
+]
+dependencies = [
+  "requests>=2.31",
+  "pypdf>=4.0",
+]
+
+[project.optional-dependencies]
+scholar = [
+  "scholarly>=1.7",
+]
+
+[project.scripts]
+knowfield = "knowfield.cli:main"
+
+[tool.setuptools]
+packages = [
+  "knowfield",
+]

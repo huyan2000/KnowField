@@ -1,0 +1,41 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.venv/
+venv/
+dist/
+build/
+*.egg-info/
+
+# Local IDE files
+.idea/
+.vscode/
+
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Generated crawler state and reports
+paper_search/.s2_cache/
+paper_search/.seen_papers.json
+paper_search/*.log
+paper_search/arxiv_latest_half_year.csv
+paper_search/arxiv_latest_half_year.html
+paper_search/papers_missing_downloads.csv
+paper_search/papers_missing_downloads.html
+paper_search/papers_search_results.csv
+paper_search/papers_search_results_downloadable.csv
+paper_search/papers_search_results.html
+paper_search/paper_search_report.csv
+paper_search/paper_search_report.html
+
+# Downloaded papers and local research material
+PHD-Buyya/
+*.pdf
+*.zip
+*.tar.gz
+paper_notes/
+reading_plan/
+maps/
+figures/
